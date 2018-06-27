@@ -12,6 +12,10 @@ public class SearchList<T extends Comparable<T>> implements SList<T> {
             this.next = null;
             this.occurences = 1;
         }
+
+        public int getOccurences() {
+            return occurences;
+        }
     }
 
     private Node head;
@@ -61,8 +65,11 @@ public class SearchList<T extends Comparable<T>> implements SList<T> {
     @Override
     public int count(T t) {
         Node iterator = head;
+
         while (iterator != null) {
-            if(t.compareTo(iterator.obj) == 0) return iterator.occurences ;
+            if(iterator.obj.compareTo(t) == 0) {
+                return iterator.getOccurences();
+            }
             iterator = iterator.next;
         }
         return 0;
@@ -71,9 +78,21 @@ public class SearchList<T extends Comparable<T>> implements SList<T> {
     @Override
     public boolean remove(T t) {
         Node iterator = head;
+        if(iterator.obj.compareTo(t) == 0){
+            head = iterator.next;
+            return true;
+        }
+
         while (iterator.next != null) {
             if (iterator.next.obj.compareTo(t) == 0) {
-                iterator.next = iterator.next.next;
+                if(iterator.next.next != null) {
+                    iterator.next = iterator.next.next;
+                    return true;
+                } else {
+                    iterator.next = null;
+                    return true;
+
+                }
             }
             iterator = iterator.next;
         }
@@ -105,19 +124,24 @@ public class SearchList<T extends Comparable<T>> implements SList<T> {
     @Override
     public Iterator<T> iterator() {
 
-        Node current = head;
+        return new Iterator<T>() {
+            Node current = head;
 
-        Iterator<T> iterator = new Iterator<T>() {
             @Override
             public boolean hasNext() {
-                return current.next != null;
+                if(current != null){
+                    return true;
+                } else {
+                    return false;
+                }
             }
 
             @Override
             public T next() {
-                return null;
+                T currentNode = current.obj;
+                current = current.next;
+                return currentNode;
             }
         };
-        return iterator;
     }
 }
