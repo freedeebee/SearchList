@@ -3,20 +3,18 @@ public class Main {
     public static void main(String [] args) {
         SearchList searchList = new SearchList();
 
-        searchList.add("Hello");
-        searchList.add("World");
-        searchList.add("third");
-        searchList.add("lorem");
+        searchList.add(1);
+        searchList.add(1);
+        searchList.add(234);
+        searchList.add(234);
+        searchList.add(426);
+        searchList.add(22);
+        searchList.add(278);
+        searchList.add(234);
+        searchList.add(426);
 
-
-        searchList.printList(); // Hello, World, third, lorem
-
-        System.out.println(searchList.noWords()); // 4
-
-        searchList.remove("third");
-
-        searchList.printList(); // Hello, World, lorem
-
-        System.out.println(searchList.noWords()); // 3
+        searchList.printList();
+        System.out.println(searchList.noOccurences());
+        System.out.println(searchList.noWords());
     }
 }
