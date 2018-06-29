@@ -1,8 +1,13 @@
+/**
+ * @author Christian Clausen, Dennis Schad, Nick Scheib
+ *
+ */
 public class Main {
 
     public static void main(String [] args) {
         SearchList searchList = new SearchList();
 
+        // for testing
         searchList.add(1);
         searchList.add(1);
         searchList.add(234);

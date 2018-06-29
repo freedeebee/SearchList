@@ -1,5 +1,9 @@
 import java.util.Iterator;
 
+/**
+ * @author Christian Clausen, Dennis Schad, Nick Scheib
+ *
+ */
 public class SearchList<T extends Comparable<T>> implements SList<T> {
 
     public class Node {
@@ -32,7 +36,6 @@ public class SearchList<T extends Comparable<T>> implements SList<T> {
         }
 
         if(head == null || head.obj.compareTo(n.obj) > 0) {
-            n.next = head;
             head = n;
         }
         else {
@@ -138,9 +141,9 @@ public class SearchList<T extends Comparable<T>> implements SList<T> {
 
             @Override
             public T next() {
-                T currentNode = current.obj;
+                T currentData = current.obj;
                 current = current.next;
-                return currentNode;
+                return currentData;
             }
         };
     }
